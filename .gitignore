@@ -1,0 +1,9 @@
+__pycache__/
+venv/
+chrome-profile-*/
+*.log
+*.sqlite
+*.db
+*.swp
+google-chrome-stable_current_amd64.deb
+'sion): session opened for user root(uid=0) by root(uid=0)'

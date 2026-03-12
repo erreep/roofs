@@ -1,0 +1,5 @@
+selenium-wire
+python-dotenv
+psycopg2-binary
+python-telegram-bot
+webdriver-manager

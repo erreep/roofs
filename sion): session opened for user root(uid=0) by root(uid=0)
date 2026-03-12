@@ -1,0 +1,153 @@
+Jun 10 07:47:01 ubuntu-4gb-nbg1-2 CRON[1086481]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:47:02 ubuntu-4gb-nbg1-2 CRON[1086482]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:47:17 ubuntu-4gb-nbg1-2 CRON[1086118]: pam_unix(cron:session): session closed for user root
+Jun 10 07:48:01 ubuntu-4gb-nbg1-2 CRON[1086855]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:48:01 ubuntu-4gb-nbg1-2 CRON[1086856]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:48:06 ubuntu-4gb-nbg1-2 CRON[1086481]: pam_unix(cron:session): session closed for user root
+Jun 10 07:49:01 ubuntu-4gb-nbg1-2 CRON[1087231]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:49:01 ubuntu-4gb-nbg1-2 CRON[1087232]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:49:07 ubuntu-4gb-nbg1-2 CRON[1086855]: pam_unix(cron:session): session closed for user root
+Jun 10 07:50:01 ubuntu-4gb-nbg1-2 CRON[1087595]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:50:01 ubuntu-4gb-nbg1-2 CRON[1087596]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:51:01 ubuntu-4gb-nbg1-2 CRON[1087958]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:51:01 ubuntu-4gb-nbg1-2 CRON[1087959]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:51:08 ubuntu-4gb-nbg1-2 CRON[1087595]: pam_unix(cron:session): session closed for user root
+Jun 10 07:52:01 ubuntu-4gb-nbg1-2 CRON[1088283]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:52:01 ubuntu-4gb-nbg1-2 CRON[1088284]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:52:39 ubuntu-4gb-nbg1-2 CRON[1088283]: pam_unix(cron:session): session closed for user root
+Jun 10 07:53:01 ubuntu-4gb-nbg1-2 CRON[1088536]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:53:01 ubuntu-4gb-nbg1-2 CRON[1088537]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:54:01 ubuntu-4gb-nbg1-2 CRON[1088799]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:54:01 ubuntu-4gb-nbg1-2 CRON[1088800]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:54:24 ubuntu-4gb-nbg1-2 CRON[1088799]: pam_unix(cron:session): session closed for user root
+Jun 10 07:54:41 ubuntu-4gb-nbg1-2 CRON[1088536]: pam_unix(cron:session): session closed for user root
+Jun 10 07:55:01 ubuntu-4gb-nbg1-2 CRON[1089039]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:55:01 ubuntu-4gb-nbg1-2 CRON[1089040]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:55:01 ubuntu-4gb-nbg1-2 CRON[1089041]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:55:01 ubuntu-4gb-nbg1-2 CRON[1089042]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jun 10 07:55:01 ubuntu-4gb-nbg1-2 CRON[1089039]: pam_unix(cron:session): session closed for user root
+Jun 10 07:55:36 ubuntu-4gb-nbg1-2 CRON[1089040]: pam_unix(cron:session): session closed for user root
+Jun 10 07:56:01 ubuntu-4gb-nbg1-2 CRON[1089261]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:56:01 ubuntu-4gb-nbg1-2 CRON[1089262]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:56:48 ubuntu-4gb-nbg1-2 CRON[1089261]: pam_unix(cron:session): session closed for user root
+Jun 10 07:57:01 ubuntu-4gb-nbg1-2 CRON[1089529]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:57:01 ubuntu-4gb-nbg1-2 CRON[1089530]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:57:18 ubuntu-4gb-nbg1-2 CRON[1089529]: pam_unix(cron:session): session closed for user root
+Jun 10 07:58:01 ubuntu-4gb-nbg1-2 CRON[1089676]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 10 07:58:01 ubuntu-4gb-nbg1-2 CRON[1089677]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 10 07:58:19 ubuntu-4gb-nbg1-2 CRON[1089676]: pam_unix(cron:session): session closed for user root
+Jun 11 05:02:01 ubuntu-4gb-nbg1-2 CRON[1119469]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:02:01 ubuntu-4gb-nbg1-2 CRON[1119470]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 05:02:19 ubuntu-4gb-nbg1-2 CRON[1119469]: pam_unix(cron:session): session closed for user root
+Jun 11 05:03:01 ubuntu-4gb-nbg1-2 CRON[1119474]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:03:01 ubuntu-4gb-nbg1-2 CRON[1119475]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 05:04:01 ubuntu-4gb-nbg1-2 CRON[1119481]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:04:01 ubuntu-4gb-nbg1-2 CRON[1119482]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 05:04:25 ubuntu-4gb-nbg1-2 CRON[1119481]: pam_unix(cron:session): session closed for user root
+Jun 11 05:05:01 ubuntu-4gb-nbg1-2 CRON[1119491]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:05:01 ubuntu-4gb-nbg1-2 CRON[1119490]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:05:01 ubuntu-4gb-nbg1-2 CRON[1119493]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jun 11 05:05:01 ubuntu-4gb-nbg1-2 CRON[1119492]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 05:05:01 ubuntu-4gb-nbg1-2 CRON[1119490]: pam_unix(cron:session): session closed for user root
+Jun 11 05:05:19 ubuntu-4gb-nbg1-2 CRON[1119491]: pam_unix(cron:session): session closed for user root
+Jun 11 05:06:01 ubuntu-4gb-nbg1-2 CRON[1119687]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:06:01 ubuntu-4gb-nbg1-2 CRON[1119688]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 05:06:31 ubuntu-4gb-nbg1-2 CRON[1119687]: pam_unix(cron:session): session closed for user root
+Jun 11 05:07:01 ubuntu-4gb-nbg1-2 CRON[1119693]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 05:07:01 ubuntu-4gb-nbg1-2 CRON[1119694]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 05:07:12 ubuntu-4gb-nbg1-2 CRON[1119693]: pam_unix(cron:session): session closed for user root
+Jun 11 12:23:01 ubuntu-4gb-nbg1-2 CRON[1128401]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:23:01 ubuntu-4gb-nbg1-2 CRON[1128402]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:23:20 ubuntu-4gb-nbg1-2 CRON[1128401]: pam_unix(cron:session): session closed for user root
+Jun 11 12:24:01 ubuntu-4gb-nbg1-2 CRON[1128414]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:24:01 ubuntu-4gb-nbg1-2 CRON[1128415]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:24:17 ubuntu-4gb-nbg1-2 CRON[1128414]: pam_unix(cron:session): session closed for user root
+Jun 11 12:25:01 ubuntu-4gb-nbg1-2 CRON[1128506]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:25:01 ubuntu-4gb-nbg1-2 CRON[1128508]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:26:01 ubuntu-4gb-nbg1-2 CRON[1128514]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:26:01 ubuntu-4gb-nbg1-2 CRON[1128515]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:23:20 ubuntu-4gb-nbg1-2 CRON[1128401]: pam_unix(cron:session): session closed for user root
+Jun 11 12:24:01 ubuntu-4gb-nbg1-2 CRON[1128414]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:24:01 ubuntu-4gb-nbg1-2 CRON[1128415]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:34:01 ubuntu-4gb-nbg1-2 CRON[1129008]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:34:01 ubuntu-4gb-nbg1-2 CRON[1129009]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:34:46 ubuntu-4gb-nbg1-2 CRON[1129008]: pam_unix(cron:session): session closed for user root
+Jun 11 12:35:01 ubuntu-4gb-nbg1-2 CRON[1129046]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:35:01 ubuntu-4gb-nbg1-2 CRON[1129047]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:35:01 ubuntu-4gb-nbg1-2 CRON[1129045]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:35:01 ubuntu-4gb-nbg1-2 CRON[1129045]: pam_unix(cron:session): session closed for user root
+Jun 11 12:35:55 ubuntu-4gb-nbg1-2 CRON[1129046]: pam_unix(cron:session): session closed for user root
+Jun 11 12:36:01 ubuntu-4gb-nbg1-2 CRON[1129084]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:36:01 ubuntu-4gb-nbg1-2 CRON[1129085]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:37:01 ubuntu-4gb-nbg1-2 CRON[1129091]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:37:01 ubuntu-4gb-nbg1-2 CRON[1129092]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:37:31 ubuntu-4gb-nbg1-2 CRON[1129091]: pam_unix(cron:session): session closed for user root
+Jun 11 12:38:01 ubuntu-4gb-nbg1-2 CRON[1129108]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:38:01 ubuntu-4gb-nbg1-2 CRON[1129109]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:39:01 ubuntu-4gb-nbg1-2 CRON[1129316]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:39:01 ubuntu-4gb-nbg1-2 CRON[1129317]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:40:01 ubuntu-4gb-nbg1-2 CRON[1129516]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:40:01 ubuntu-4gb-nbg1-2 CRON[1129517]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:40:28 ubuntu-4gb-nbg1-2 CRON[1129516]: pam_unix(cron:session): session closed for user root
+Jun 11 12:41:01 ubuntu-4gb-nbg1-2 CRON[1129529]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:41:01 ubuntu-4gb-nbg1-2 CRON[1129530]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:41:28 ubuntu-4gb-nbg1-2 CRON[1129529]: pam_unix(cron:session): session closed for user root
+Jun 11 12:42:01 ubuntu-4gb-nbg1-2 CRON[1129545]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:42:01 ubuntu-4gb-nbg1-2 CRON[1129546]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:42:24 ubuntu-4gb-nbg1-2 CRON[1129545]: pam_unix(cron:session): session closed for user root
+Jun 11 12:43:01 ubuntu-4gb-nbg1-2 CRON[1129562]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:43:01 ubuntu-4gb-nbg1-2 CRON[1129563]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:43:21 ubuntu-4gb-nbg1-2 CRON[1129562]: pam_unix(cron:session): session closed for user root
+Jun 11 12:44:01 ubuntu-4gb-nbg1-2 CRON[1129574]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:44:01 ubuntu-4gb-nbg1-2 CRON[1129575]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:44:19 ubuntu-4gb-nbg1-2 CRON[1129574]: pam_unix(cron:session): session closed for user root
+Jun 11 12:45:01 ubuntu-4gb-nbg1-2 CRON[1129586]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:45:01 ubuntu-4gb-nbg1-2 CRON[1129585]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:45:01 ubuntu-4gb-nbg1-2 CRON[1129587]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:45:01 ubuntu-4gb-nbg1-2 CRON[1129588]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jun 11 12:45:01 ubuntu-4gb-nbg1-2 CRON[1129585]: pam_unix(cron:session): session closed for user root
+Jun 11 12:45:21 ubuntu-4gb-nbg1-2 CRON[1129586]: pam_unix(cron:session): session closed for user root
+Jun 11 12:46:01 ubuntu-4gb-nbg1-2 CRON[1129600]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:46:01 ubuntu-4gb-nbg1-2 CRON[1129601]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:47:01 ubuntu-4gb-nbg1-2 CRON[1130284]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:47:01 ubuntu-4gb-nbg1-2 CRON[1130285]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:48:01 ubuntu-4gb-nbg1-2 CRON[1130598]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:48:01 ubuntu-4gb-nbg1-2 CRON[1130599]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:48:35 ubuntu-4gb-nbg1-2 CRON[1130284]: pam_unix(cron:session): session closed for user root
+Jun 11 12:49:01 ubuntu-4gb-nbg1-2 CRON[1131026]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:49:01 ubuntu-4gb-nbg1-2 CRON[1131027]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:50:01 ubuntu-4gb-nbg1-2 CRON[1131357]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:50:01 ubuntu-4gb-nbg1-2 CRON[1131358]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:51:01 ubuntu-4gb-nbg1-2 CRON[1131761]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:51:01 ubuntu-4gb-nbg1-2 CRON[1131762]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:52:01 ubuntu-4gb-nbg1-2 CRON[1132169]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:52:01 ubuntu-4gb-nbg1-2 CRON[1132170]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:52:22 ubuntu-4gb-nbg1-2 CRON[1131357]: pam_unix(cron:session): session closed for user root
+Jun 11 12:53:01 ubuntu-4gb-nbg1-2 CRON[1132640]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:53:01 ubuntu-4gb-nbg1-2 CRON[1132641]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:53:28 ubuntu-4gb-nbg1-2 CRON[1131761]: pam_unix(cron:session): session closed for user root
+Jun 11 12:53:34 ubuntu-4gb-nbg1-2 CRON[1130598]: pam_unix(cron:session): session closed for user root
+Jun 11 12:54:01 ubuntu-4gb-nbg1-2 CRON[1133042]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:54:01 ubuntu-4gb-nbg1-2 CRON[1133043]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:54:24 ubuntu-4gb-nbg1-2 CRON[1132169]: pam_unix(cron:session): session closed for user root
+Jun 11 12:55:01 ubuntu-4gb-nbg1-2 CRON[1133501]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:55:01 ubuntu-4gb-nbg1-2 CRON[1133503]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Jun 11 12:55:01 ubuntu-4gb-nbg1-2 CRON[1133502]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:55:01 ubuntu-4gb-nbg1-2 CRON[1133504]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:55:01 ubuntu-4gb-nbg1-2 CRON[1133501]: pam_unix(cron:session): session closed for user root
+Jun 11 12:56:01 ubuntu-4gb-nbg1-2 CRON[1133932]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:56:01 ubuntu-4gb-nbg1-2 CRON[1133933]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:57:01 ubuntu-4gb-nbg1-2 CRON[1134387]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:57:01 ubuntu-4gb-nbg1-2 CRON[1134389]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:57:19 ubuntu-4gb-nbg1-2 CRON[1133502]: pam_unix(cron:session): session closed for user root
+Jun 11 12:57:30 ubuntu-4gb-nbg1-2 CRON[1132640]: pam_unix(cron:session): session closed for user root
+Jun 11 12:58:01 ubuntu-4gb-nbg1-2 CRON[1134688]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:58:01 ubuntu-4gb-nbg1-2 CRON[1134689]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 12:58:23 ubuntu-4gb-nbg1-2 CRON[1133042]: pam_unix(cron:session): session closed for user root
+Jun 11 12:59:01 ubuntu-4gb-nbg1-2 CRON[1135094]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 12:59:01 ubuntu-4gb-nbg1-2 CRON[1135095]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 13:00:01 ubuntu-4gb-nbg1-2 CRON[1135533]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 13:00:01 ubuntu-4gb-nbg1-2 CRON[1135534]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
+Jun 11 13:00:27 ubuntu-4gb-nbg1-2 CRON[1133932]: pam_unix(cron:session): session closed for user root
+Jun 11 13:01:01 ubuntu-4gb-nbg1-2 CRON[1135923]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+Jun 11 13:01:01 ubuntu-4gb-nbg1-2 CRON[1135924]: (root) CMD (cd /root/roofz-bot && /root/roofz-bot/venv/bin/python roofz_bot.py >> /root/roofz-bot/scraper.log 2>&1)
