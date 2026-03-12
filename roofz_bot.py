@@ -1,48 +1,35 @@
 #!/usr/bin/env python3
+import json
 import time, random
 
-# before you do any driver.get(...)
-# This initial sleep helps to vary start times if you run multiple instances or on a schedule,
-# making it less predictable.
-time.sleep(random.uniform(10, 30))   # wait 10–30 seconds randomly
+# This initial sleep helps vary start times if you run multiple instances on a schedule.
+time.sleep(random.uniform(10, 30))
 
 import os
-import re
-import time
-import tempfile
 import psycopg2
 import asyncio
 from datetime import datetime, timedelta, timezone # Added timedelta and timezone
+from urllib.error import HTTPError, URLError
+from urllib.parse import quote, urlencode, urljoin
+from urllib.request import ProxyHandler, Request, build_opener
 
 from dotenv import load_dotenv
 load_dotenv()  # loads DATABASE_URL, TELEGRAM_TOKEN, and PROXY variables from .env
 
 from telegram import Bot
-from seleniumwire import webdriver as sw_webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import (
-    TimeoutException,
-    NoSuchElementException,
-    ElementClickInterceptedException,
-    ElementNotInteractableException
-)
 
 # --- CONFIG & DB SETUP ---
 DB_URL         = os.getenv("DATABASE_URL")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+BASE_URL       = "https://roofz.eu"
+PROPERTY_OVERVIEW_PATH = "/huur/woningen"
+PROPERTY_API_PATH = "/api/ms/listing/properties"
+STORYBLOK_PAGES_PATH = "/api/ms/storyblok/pages"
+PROPERTY_OVERVIEW_CONTENT_TYPE = "sb-property-overview-page"
 
 # PROXY CONFIGURATION - Read from .env
 # PROXY_LIST_STR: Comma-separated list of proxies in "host:port:user:pass" format
 PROXY_LIST_STR = os.getenv("PROXY_LIST")
-# PROXY_USERNAME and PROXY_PASSWORD are now parsed from PROXY_LIST_STR directly in get_driver
-PROXY_USERNAME = None 
-PROXY_PASSWORD = None 
 
 # --- Environment Variable Checks ---
 if not DB_URL:
@@ -133,153 +120,247 @@ except Exception as e:
 bot = Bot(token=TELEGRAM_TOKEN)
 
 
-def get_driver():
+def get_http_opener():
     """
-    Initializes and returns a Selenium WebDriver with configured options and proxy settings.
+    Builds an opener for Roofz API calls, optionally routed through a random proxy.
     """
-    opts = Options()
-    # Run in headless mode (no visible browser UI)
-    opts.add_argument("--headless=new")
-    # Set window size for consistent scraping results
-    opts.add_argument("--window-size=1920,1080")
-    # Recommended for running Chrome in a Docker container or on a server without a display
-    opts.add_argument("--no-sandbox")
-    # Overcome limited resource problems, especially in containerized environments
-    opts.add_argument("--disable-dev-shm-usage")
-    # Disable GPU hardware acceleration (often not available in headless/server environments)
-    opts.add_argument("--disable-gpu")
+    handlers = []
 
-    # Use a fresh temporary profile each run to avoid cached data/locked-profile errors
-    profile = tempfile.mkdtemp(prefix="chrome-profile-")
-    opts.add_argument(f"--user-data-dir={profile}")
-
-    # Automatically download and manage the ChromeDriver executable
-    svc = Service(ChromeDriverManager().install())
-
-    # --- PROXY IMPLEMENTATION START (using selenium-wire) ---
-    seleniumwire_options = {}
     if PROXY_LIST_STR:
-        # Split the comma-separated proxy list and clean up whitespace
-        raw_proxy_strings = [p.strip() for p in PROXY_LIST_STR.split(',') if p.strip()]
-        
+        raw_proxy_strings = [p.strip() for p in PROXY_LIST_STR.split(",") if p.strip()]
         if raw_proxy_strings:
-            # Randomly select one full proxy string (e.g., "host:port:user:pass")
             selected_raw_proxy = random.choice(raw_proxy_strings)
-            
-            # Parse the selected proxy string into its components
-            parts = selected_raw_proxy.split(':')
+            parts = selected_raw_proxy.split(":")
             if len(parts) == 4:
                 host, port, user, password = parts
-                
-                # Construct the proxy URL with embedded credentials
-                proxy_url_with_auth = f"http://{user}:{password}@{host}:{port}"
-                print(f"Using proxy: {host}:{port} with user '{user}' (selected from list).")
-
-                # Assign the proxy configuration to seleniumwire_options
-                seleniumwire_options['proxy'] = {
-                    'http': proxy_url_with_auth,
-                    'https': proxy_url_with_auth,
-                    'no_proxy': 'localhost,127.0.0.1' # Exclude local traffic
-                }
+                proxy_url = (
+                    f"http://{quote(user, safe='')}:{quote(password, safe='')}"
+                    f"@{host}:{port}"
+                )
+                handlers.append(ProxyHandler({
+                    "http": proxy_url,
+                    "https": proxy_url,
+                }))
+                print(f"Using proxy for API requests: {host}:{port} with user '{user}' (selected from list).")
             else:
-                print(f"WARNING: Invalid proxy string format in PROXY_LIST: {selected_raw_proxy}. Expected 'host:port:user:pass'. Skipping proxy.")
+                print(
+                    f"WARNING: Invalid proxy string format in PROXY_LIST: {selected_raw_proxy}. "
+                    "Expected 'host:port:user:pass'. Running without proxy."
+                )
         else:
-            print("WARNING: PROXY_LIST is set but contains no valid proxy entries.")
+            print("WARNING: PROXY_LIST is set but contains no valid proxy entries. Running without proxy.")
     else:
         print("INFO: PROXY_LIST is not set. Running without proxy.")
-    # --- PROXY IMPLEMENTATION END ---
 
-    # Initialize the Chrome driver using seleniumwire's webdriver.Chrome
-    # This enables proxy handling through seleniumwire_options
-    return sw_webdriver.Chrome(
-        service=svc,
-        options=opts,
-        seleniumwire_options=seleniumwire_options
+    return build_opener(*handlers)
+
+
+def fetch_json(opener, path, params=None, timeout=30):
+    """
+    Fetches JSON from a Roofz API endpoint.
+    """
+    url = urljoin(BASE_URL, path)
+    if params:
+        url = f"{url}?{urlencode(params, doseq=True)}"
+
+    req = Request(url, headers={
+        "Accept": "application/json, text/plain, */*",
+        "User-Agent": (
+            "Mozilla/5.0 (X11; Linux x86_64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/123.0.0.0 Safari/537.36"
+        ),
+    })
+
+    try:
+        with opener.open(req, timeout=timeout) as response:
+            status = getattr(response, "status", response.getcode())
+            body = response.read()
+    except HTTPError as exc:
+        if exc.code == 204:
+            return None
+        print(f"HTTP error while fetching {url}: {exc}")
+        return None
+    except URLError as exc:
+        print(f"Network error while fetching {url}: {exc}")
+        return None
+
+    if status == 204 or not body:
+        return None
+
+    try:
+        return json.loads(body.decode("utf-8"))
+    except json.JSONDecodeError as exc:
+        print(f"Failed to parse JSON from {url}: {exc}")
+        return None
+
+
+def iter_storyblok_components(node):
+    """
+    Yields nested Storyblok components from a page payload.
+    """
+    if isinstance(node, dict):
+        if "component" in node:
+            yield node
+        for value in node.values():
+            yield from iter_storyblok_components(value)
+    elif isinstance(node, list):
+        for item in node:
+            yield from iter_storyblok_components(item)
+
+
+def load_scrape_config(opener):
+    """
+    Loads the overview page config so the scraper follows the site's live API filters.
+    """
+    payload = fetch_json(opener, STORYBLOK_PAGES_PATH, {
+        "perPage": 1,
+        "version": "published",
+        "content_type": PROPERTY_OVERVIEW_CONTENT_TYPE,
+    })
+
+    property_type = "RentResident"
+    default_filters = {"stage": "available"}
+
+    stories = (payload or {}).get("stories") or []
+    if not stories:
+        print("WARNING: Could not load Storyblok overview config. Falling back to default API filters.")
+        return property_type, default_filters
+
+    page_content = stories[0].get("content") or {}
+    property_type = page_content.get("propertyType") or property_type
+
+    for component in iter_storyblok_components(page_content):
+        if component.get("component") != "sb-properties-overview":
+            continue
+
+        raw_filters = component.get("defaultFilters")
+        if raw_filters:
+            try:
+                parsed_filters = json.loads(raw_filters)
+                if isinstance(parsed_filters, dict):
+                    default_filters.update(parsed_filters)
+            except json.JSONDecodeError:
+                print(f"WARNING: Could not parse defaultFilters JSON: {raw_filters!r}")
+        break
+
+    if isinstance(default_filters.get("stage"), list) and len(default_filters["stage"]) == 1:
+        default_filters["stage"] = default_filters["stage"][0]
+
+    return property_type, default_filters
+
+
+def build_property_query(property_type, default_filters, page, per_page):
+    """
+    Converts the site filter config into query params accepted by the public JSON API.
+    """
+    params = {
+        "page": page,
+        "perPage": per_page,
+        "filter[import_type]": property_type,
+    }
+
+    for key, value in (default_filters or {}).items():
+        if value in (None, "", [], {}):
+            continue
+        if isinstance(value, list):
+            value = ",".join(str(item) for item in value)
+        params[f"filter[{key}]"] = value
+
+    return params
+
+
+def build_location(address):
+    """
+    Formats a human-readable location string from the API address payload.
+    """
+    address = address or {}
+
+    street_line = " ".join(
+        part for part in [
+            address.get("street", "").strip(),
+            address.get("house_number", "").strip(),
+            address.get("house_number_extension", "").strip(),
+        ]
+        if part
+    )
+    city_line = " ".join(
+        part for part in [
+            address.get("postal_code", "").strip(),
+            address.get("location", "").strip(),
+        ]
+        if part
     )
 
+    return ", ".join(part for part in [street_line, city_line] if part)
 
-def scrape_listings(driver, wait):
+
+def build_listing_link(item):
     """
-    Navigates to the listings page, scrapes property details, and handles pagination.
+    Builds the canonical listing URL used on the live Roofz site.
     """
-    driver.get("https://www.roofz.eu/availability")
+    if item.get("external_url"):
+        return item["external_url"]
+
+    slug = item.get("slug")
+    if not slug:
+        return None
+
+    return urljoin(BASE_URL, f"{PROPERTY_OVERVIEW_PATH.rstrip('/')}/{slug}")
+
+
+def scrape_listings(opener):
+    """
+    Fetches listings from the live Roofz JSON API instead of scraping rendered HTML.
+    """
+    property_type, default_filters = load_scrape_config(opener)
+    print(
+        f"Fetching listings from API using property type '{property_type}' "
+        f"and filters {default_filters}."
+    )
+
     all_items = []
+    page = 1
+    last_page = 1
+    per_page = 100
 
-    while True:
-        # Wait until property cards are present on the page
-        try:
-            wait.until(EC.presence_of_all_elements_located((
-                By.CSS_SELECTOR, "div.property-cards__single div.property"
-            )))
-        except TimeoutException:
-            print("No property cards found on page, or page took too long to load. Exiting scrape loop.")
-            break # Exit if no cards appear
+    while page <= last_page:
+        payload = fetch_json(
+            opener,
+            PROPERTY_API_PATH,
+            build_property_query(property_type, default_filters, page, per_page),
+        )
 
-        cards = driver.find_elements(By.CSS_SELECTOR, "div.property-cards__single div.property")
+        if not payload:
+            if page == 1:
+                print("No listing payload returned from API.")
+            break
 
-        for card in cards:
-            try:
-                title    = card.find_element(By.CSS_SELECTOR, ".property__title").text.strip()
-                loc_full = card.find_element(By.CSS_SELECTOR, ".property__location").text.strip()
-                # Find city, specifically within the location span
-                city     = card.find_element(
-                              By.CSS_SELECTOR,
-                              ".property__location span.capitalize"
-                           ).text.strip()
-                # Get rent and service prices
-                prices   = card.find_elements(By.CSS_SELECTOR, "div.property__price .highlighted")
-                rent     = prices[0].text.strip()
-                service  = prices[1].text.strip()
-                # Get the direct link to the listing
-                link     = card.find_element(By.CSS_SELECTOR, "a.property__link") \
-                                  .get_attribute("href")
+        page_items = payload.get("data") or []
+        meta = payload.get("meta") or {}
+        last_page = int(meta.get("last_page") or 1)
 
-                all_items.append({
-                    "title":    title,
-                    "location": loc_full,
-                    "city":     city,
-                    "rent":     rent,
-                    "service":  service,
-                    "link":     link
-                })
-            except NoSuchElementException as e:
-                # If any expected element is missing in a card, skip it and print a warning
-                print(f"WARNING: Skipping a card due to missing element: {e}")
-                continue # Move to the next card
+        for item in page_items:
+            link = build_listing_link(item)
+            if not link:
+                print(f"WARNING: Skipping listing without slug/link: {item.get('id')}")
+                continue
 
-        # Try to click the "Next" button for pagination
-        try:
-            nxt = wait.until(EC.presence_of_element_located((
-                By.CSS_SELECTOR, 'button[aria-label="Go to next page"]'
-            )))
-            # Scroll the next button into view to ensure it's clickable
-            driver.execute_script("arguments[0].scrollIntoView({block:'center'});", nxt)
-            time.sleep(0.3) # Short pause after scroll
+            address = item.get("address") or {}
+            handover = item.get("handover") or {}
 
-            # Store a reference to the first card before clicking next.
-            # We'll use this to wait for the page to fully reload.
-            first_card_on_current_page = cards[0] if cards else None
+            all_items.append({
+                "title": item.get("title", "").strip(),
+                "location": build_location(address),
+                "city": (address.get("location") or "").strip(),
+                "rent": (handover.get("price_formatted") or "").strip(),
+                "service": (handover.get("service_costs_formatted") or "").strip(),
+                "link": link,
+            })
 
-            try:
-                nxt.click() # Attempt direct click
-            except (ElementNotInteractableException, ElementClickInterceptedException):
-                # Fallback to JavaScript click if direct click fails
-                driver.execute_script("arguments[0].click();", nxt)
-            
-            # Wait for the first card of the previous page to become stale,
-            # indicating the new page has loaded.
-            if first_card_on_current_page:
-                wait.until(EC.staleness_of(first_card_on_current_page))
-            else:
-                # If for some reason no cards were found on the previous page,
-                # just wait a moment to ensure the page has a chance to load.
-                time.sleep(2) 
-        except (TimeoutException, NoSuchElementException):
-            # If "Next" button is not found (Timeout) or some other element issue,
-            # it means we've reached the last page or pagination is broken.
-            break # Exit the pagination loop
+        print(f"Fetched {len(page_items)} listings from API page {page}/{last_page}.")
+        page += 1
 
-    # Deduplicate listings by link (ensuring unique entries)
     unique = {item["link"]: item for item in all_items}
     return list(unique.values())
 
@@ -414,18 +495,13 @@ def main():
     """
     Main function to orchestrate the scraping, syncing, and notification process.
     """
-    driver = None # Initialize driver to None
     try:
-        driver = get_driver() # Get the Selenium WebDriver with proxy
-        wait   = WebDriverWait(driver, 10) # Set up WebDriverWait
-        
-        listings = scrape_listings(driver, wait) # Perform the scraping
+        opener = get_http_opener()
+        listings = scrape_listings(opener)
         print(f"Scraped {len(listings)} listings total.")
         
-        # --- NEW: Scrape Health Check ---
-        # Adjust this value based on the typical minimum number of listings expected on the site.
-        # This prevents accidental mass deletions if a scrape severely fails and returns very few items.
-        # For 'roofz.eu', if there are typically 50+ listings, setting this to 20 or 30 might be reasonable.
+        # --- Scrape Health Check ---
+        # Keep a low but non-zero floor so a bad API response does not wipe the database.
         MIN_EXPECTED_LISTINGS = 2 
         
         if len(listings) < MIN_EXPECTED_LISTINGS:
@@ -448,13 +524,11 @@ def main():
         #         bot.send_message(chat_id=ADMIN_CHAT_ID, text=f"🔴 Scraper Error: {e}")
         #     )
     finally:
-        if driver:
-            driver.quit() # Always close the browser
         if cur:
             cur.close()   # Close cursor
         if conn:
             conn.close()  # Close DB connection
-        print("Script finished. Browser and DB connection closed.")
+        print("Script finished. DB connection closed.")
 
 
 if __name__ == "__main__":
